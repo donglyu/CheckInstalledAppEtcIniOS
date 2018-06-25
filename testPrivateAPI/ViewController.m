@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #include <objc/runtime.h>
 #import <dlfcn.h>
+
 //#import <LSApplicationWorkspace.h>
 
 @interface ViewController ()
@@ -31,7 +32,7 @@
 
 #pragma mark - Private.
 
-/** 获取所有系统已安装的应用。*/
+/** 获取所有系统已安装的应用。已验证：至少iOS 12模拟器可用*/
 - (IBAction)GetAllInstalledApps:(id)sender {
     
     NSArray *allApplications = [self.workspace performSelector:@selector(allApplications)];//这样就能获取到手机中安装的所有App
@@ -43,7 +44,7 @@
     }
 }
 
-/** 检测是否已安装某个ID的应用 */
+/** 检测是否已安装某个ID的应用并尝试打开 */
 - (IBAction)JudgeHadInstalledApp:(id)sender {
     NSString *bundleId = @"com.apple.webapp"; //
     
@@ -113,6 +114,28 @@
 
 #pragma mark - Helper.
 
+/**
+ format 不同参数对应的图片大小。
+ 0 - 29x29
+ 1 - 40x40
+ 2 - 62x62
+ 3 - 42x42
+ 4 - 37x48
+ 5 - 37x48
+ 6 - 82x82
+ 7 - 62x62
+ 8 - 20x20
+ 9 - 37x48
+ 10 - 37x48
+ 11 - 122x122
+ 12 - 58x58
+ */
+- (IBAction)GetAppIconImage:(id)sender {
+    // iOS 11 later失效
+//    UIImage* icon = [UIImage _applicationIconImageForBundleIdentifier:@"com.apple.webapp" format:10 scale:[UIScreen mainScreen].scale];
+
+    
+}
 
 #pragma mark - Other.
 - (void)didReceiveMemoryWarning {
